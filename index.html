@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pm BMI Calculator</title>
+    <link rel="icon" type="image/png" href="c.jpg">
+    <style>
+        body {
+            background-color: #d7d7d7;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: blue;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        footer {
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 18px;
+        }
+        #card {
+            margin: 150px auto 100px auto;
+            width: 800px;
+            height: 350px;
+            background-color: white;
+            border-radius: 10px;
+            border-bottom: 30px solid blue;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            display: flex;
+        }
+        #card h2 {
+            text-align: center;
+        }
+        #card label {
+            margin-left: 40px;
+            background-color: blue;
+            font-size: 20px;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        #card input {
+            margin-left: 20px;
+            width: 300px;
+            height: 30px;
+        }
+        .val-1 {
+            display: flex;
+        }
+        #card button {
+            padding: 10px;
+            width: 450px;
+            background-color: black;
+            color: white;
+            border: none;
+            margin: 20px 0 0 50px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        #card button:hover {
+            background-color: #333;
+        }
+        #result {
+            text-align: center;
+            font-size: 30px;
+            color: orange;
+        }
+        .image-r img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+   Pm BMI Calculator
+</header>
+
+<div id="card">
+    <div style="flex:1; padding: 20px;">
+        <h2>Pm BMI Calculator</h2>
+        <div class="val-1">
+            <label for="weight">Weight (kg) :</label><br>
+            <input type="number" id="weight" placeholder="e.g. 70"><br>
+        </div>
+        <br>
+        <div class="val-1">
+            <label for="height">Height (m) :</label><br>
+            <input type="number" id="height" step="0.01" placeholder="e.g. 1.75"><br>
+        </div>
+        <br>
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <h3 id="result"></h3>
+    </div>
+    <div class="image-r" style="flex:1;">
+        <img src="workout.jpg" alt="Workout Image">
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Pm BMI Calculator | All Rights Reserved
+</footer>
+
+<script>
+    function calculateBMI() {
+        const weight = parseFloat(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value);
+
+        if (!weight || !height || height <= 0) {
+            document.getElementById('result').innerText = "Please enter valid values!";
+            return;
+        }
+
+        const bmi = weight / (height * height);
+        let category = "";
+
+        if (bmi < 18.5) {
+            category = "Underweight";
+        } else if (bmi < 24.9) {
+            category = "Normal weight";
+        } else if (bmi < 29.9) {
+            category = "Overweight";
+        } else {
+            category = "Obese";
+        }
+
+        document.getElementById('result').innerText = `Your BMI is ${bmi.toFixed(2)} (${category})`;
+    }
+</script>
+
+</body>
+</html>
